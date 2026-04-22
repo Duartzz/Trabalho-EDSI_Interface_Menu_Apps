@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Interface Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <main class="container">
+    <header class="topbar">
+      <div>
+        <h1>Project Interface</h1>
+        <p>Visual placeholder hub for your mini apps</p>
+      </div>
+      <div class="status" id="statusTime">--:--:--</div>
+    </header>
+
+    <section class="grid">
+      <button class="app-card" data-app="Calculator">
+        <span class="emoji">🧮</span>
+        <span class="title">Calculator</span>
+        <span class="subtitle">Quick operations</span>
+      </button>
+
+      <button class="app-card" data-app="Notebook">
+        <span class="emoji">📝</span>
+        <span class="title">Notebook</span>
+        <span class="subtitle">Take notes</span>
+      </button>
+
+      <button class="app-card" data-app="Clock and Timer">
+        <span class="emoji">⏰</span>
+        <span class="title">Clock & Timer</span>
+        <span class="subtitle">Track time</span>
+      </button>
+
+      <button class="app-card" data-app="Tic-Tac-Toe">
+        <span class="emoji">❌⭕</span>
+        <span class="title">Tic-Tac-Toe</span>
+        <span class="subtitle">2-player game</span>
+      </button>
+
+      <button class="app-card" data-app="Browser">
+        <span class="emoji">🌐</span>
+        <span class="title">Browser</span>
+        <span class="subtitle">Web access</span>
+      </button>
+
+      <button class="app-card" data-app="Snake Game">
+        <span class="emoji">🐍</span>
+        <span class="title">Snake Game</span>
+        <span class="subtitle">Arcade classic</span>
+      </button>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="appModal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2 id="modalTitle">App</h2>
+      <p>This is a visual placeholder. You can connect the real app here later.</p>
+      <button id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
