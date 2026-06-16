@@ -19,7 +19,13 @@ function hideModal() {
 }
 
 const appRoutes = {
+  "Calculator": "./SubApps/Calculadora/index.html",
+  "Notebook": "./SubApps/Bloco_de_Notas/blocodenotas.html",
+  "Clock and Timer": "./SubApps/Relogio_E_Timer/index.html",
+  "Tic-Tac-Toe": "./SubApps/Tic-Tac-Toe/index.html",
+  "Browser": "./SubApps/Browser/index.html",
   "Snake Game": "./SubApps/Snake_Game/index.html",
+  "AI Bud": "./SubApps/AI_Bud/index.html",
 };
 
 appCards.forEach((card) => {
