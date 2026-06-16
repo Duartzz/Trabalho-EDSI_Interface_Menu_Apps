@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Clock</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface-hover: #243044;
+      --border: #2d3a4f;
+      --text: #e8edf4;
+      --text-muted: #8b9cb3;
+      --accent: #5b9fd4;
+      --accent-glow: rgba(91, 159, 212, 0.15);
+      --day: #f0c674;
+      --night: #7c8db5;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(91, 159, 212, 0.12), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(91, 159, 212, 0.06), transparent);
+      color: var(--text);
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .local-time {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .local-time span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .clock-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .clock-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--accent-glow);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .clock-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(91, 159, 212, 0.4);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .clock-card:hover::before {
+      opacity: 1;
+    }
+
+    .clock-card.is-day {
+      border-left: 3px solid var(--day);
+    }
+
+    .clock-card.is-night {
+      border-left: 3px solid var(--night);
+    }
+
+    .city-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .city-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .timezone-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .time-display {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      font-weight: 300;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+
+    .date-display {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .offset {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .period-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .period-badge.day {
+      background: rgba(240, 198, 116, 0.15);
+      color: var(--day);
+    }
+
+    .period-badge.night {
+      background: rgba(124, 141, 181, 0.15);
+      color: var(--night);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>World Clock</h1>
+    <p class="local-time">Your local time: <span id="local-timezone">—</span></p>
+  </header>
+
+  <main class="grid" id="clocks"></main>
+
+  <footer>Times update every second · Uses your browser's timezone database</footer>
+
+  <script>
+    const zones = [
+      { city: "Lisbon",        tz: "Europe/Lisbon",          flag: "🇵🇹" },
+      { city: "New York",      tz: "America/New_York",       flag: "🇺🇸" },
+      { city: "Dubai",         tz: "Asia/Dubai",             flag: "🇦🇪" },
+      { city: "Tokyo",         tz: "Asia/Tokyo",             flag: "🇯🇵" },
+    ];
+
+    const localTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    document.getElementById("local-timezone").textContent = localTz;
+
+    const container = document.getElementById("clocks");
+
+    zones.forEach(({ city, tz, flag }) => {
+      const card = document.createElement("article");
+      card.className = "clock-card";
+      card.dataset.tz = tz;
+      card.innerHTML = `
+        <div class="city-row">
+          <span class="city-name">${flag} ${city}</span>
+          <span class="timezone-label">${tz.replace(/_/g, " ")}</span>
+        </div>
+        <div class="time-display" data-time>--:--:--</div>
+        <div class="date-display" data-date>—</div>
+        <div class="offset" data-offset>—</div>
+      `;
+      container.appendChild(card);
+    });
+
+    function getHourInZone(tz) {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: tz,
+        hour: "numeric",
+        hour12: false,
+      }).formatToParts(new Date());
+      return parseInt(parts.find(p => p.type === "hour").value, 10);
+    }
+
+    function formatOffset(tz) {
+      const now = new Date();
+      const utc = new Date(now.toLocaleString("en-US", { timeZone: "UTC" }));
+      const local = new Date(now.toLocaleString("en-US", { timeZone: tz }));
+      const diffMin = (local - utc) / 60000;
+      const sign = diffMin >= 0 ? "+" : "-";
+      const abs = Math.abs(diffMin);
+      const h = Math.floor(abs / 60);
+      const m = abs % 60;
+      return `UTC${sign}${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+    }
+
+    function updateClocks() {
+      const now = new Date();
+
+      document.querySelectorAll(".clock-card").forEach(card => {
+        const tz = card.dataset.tz;
+        const hour = getHourInZone(tz);
+        const isDay = hour >= 6 && hour < 20;
+
+        card.classList.toggle("is-day", isDay);
+        card.classList.toggle("is-night", !isDay);
+
+        const timeEl = card.querySelector("[data-time]");
+        const dateEl = card.querySelector("[data-date]");
+        const offsetEl = card.querySelector("[data-offset]");
+
+        timeEl.textContent = new Intl.DateTimeFormat("en-US", {
+          timeZone: tz,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        }).format(now);
+
+        dateEl.textContent = new Intl.DateTimeFormat("en-US", {
+          timeZone: tz,
+          weekday: "long",
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }).format(now);
+
+        const period = isDay ? "Day" : "Night";
+        const badgeClass = isDay ? "day" : "night";
+        offsetEl.innerHTML = `${formatOffset(tz)} · <span class="period-badge ${badgeClass}">${period}</span>`;
+      });
+    }
+
+    updateClocks();
+    setInterval(updateClocks, 1000);
+  </script>
+</body>
+</html>
