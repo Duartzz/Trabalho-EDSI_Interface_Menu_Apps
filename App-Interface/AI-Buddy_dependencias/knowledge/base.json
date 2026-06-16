@@ -1,0 +1,42 @@
+[
+  {
+    "id": "apps-catalog",
+    "tags": ["apps", "aplicações", "meuphone", "hub", "lista"],
+    "content": "O MeuPhone inclui estas apps: Calculadora (operações aritméticas, potências, logaritmos, floor, ceil, arredondamento a 2 casas), Bloco de Notas (criar e guardar notas em localStorage), Relógio e Timer (relógio mundial e cronómetro), Jogo do Galo (Tic-Tac-Toe com 1 ou 2 jogadores), Browser (download de browsers como Chrome, Edge, Brave, Opera GX e TOR), Snake Game (jogo da cobra clássico), e AI Buddy (este assistente)."
+  },
+  {
+    "id": "calc-basic",
+    "tags": ["calculadora", "percentagem", "porcentagem", "15%", "200", "30", "aritmética"],
+    "content": "Para calcular percentagens: X% de Y = (X/100) × Y. Exemplo: 15% de 200 = (15/100) × 200 = 0,15 × 200 = 30. O utilizador pode descrever o cálculo que fez na Calculadora e o AI Buddy explica o raciocínio passo a passo."
+  },
+  {
+    "id": "calc-advanced",
+    "tags": ["calculadora", "floor", "ceil", "log", "ln", "potência", "erro", "divisão"],
+    "content": "A Calculadora suporta operações encadeadas (+, −, ×, ÷), potências (xʸ), logaritmos (log base 10, ln), raiz quadrada, floor (arredondar para baixo), ceil (arredondar para cima) e arredondamento a 2 casas decimais (2dp). Divisão por zero, log(0) ou log de números negativos mostram 'Erro' sem crashar. O botão AC limpa todo o estado."
+  },
+  {
+    "id": "tictactoe-strategy",
+    "tags": ["galo", "tic-tac-toe", "jogada", "estratégia", "minimax", "melhor jogada", "centro", "canto"],
+    "content": "Estratégia do Jogo do Galo (Minimax em linguagem simples): 1) Se puderes ganhar numa jogada, joga para vencer. 2) Se o adversário pode ganhar na próxima, bloqueia. 3) O centro é a melhor primeira jogada. 4) Cantos são melhores que arestas laterais. 5) Cria 'armadilhas' com dois alinhamentos possíveis (fork). O Minimax avalia todas as jogadas futuras e escolhe a que maximiza a probabilidade de vitória ou empate. O AI Buddy não vê o tabuleiro — o utilizador deve descrever as posições (ex: 'tenho X no centro, O nos cantos')."
+  },
+  {
+    "id": "notepad-help",
+    "tags": ["notas", "bloco", "notebook", "criar nota", "guardar"],
+    "content": "O Bloco de Notas guarda automaticamente o texto em localStorage. O AI Buddy pode preparar uma nota com título e corpo — o utilizador confirma antes de aplicar. Nunca apagar notas sem confirmação explícita do utilizador."
+  },
+  {
+    "id": "browser-help",
+    "tags": ["browser", "chrome", "edge", "download", "internet"],
+    "content": "A app Browser permite fazer download de instaladores oficiais: Opera GX, Brave, Google Chrome, Microsoft Edge e TOR Browser para Windows."
+  },
+  {
+    "id": "snake-help",
+    "tags": ["snake", "cobra", "jogo", "pontos"],
+    "content": "O Snake Game é o clássico jogo da cobra: controla a cobra para comer comida, crescer e evitar bater nas paredes ou em ti mesmo. Usa as setas do teclado."
+  },
+  {
+    "id": "clock-help",
+    "tags": ["relógio", "timer", "cronómetro", "hora", "mundial"],
+    "content": "Relógio e Timer inclui Relógio Mundial (horas em várias cidades) e Cronómetro (medir tempo e registar voltas)."
+  }
+]
