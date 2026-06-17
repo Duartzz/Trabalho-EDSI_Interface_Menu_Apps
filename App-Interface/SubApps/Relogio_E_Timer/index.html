@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relógio & Timer</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .container { width: min(700px, 92%); }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+    .back-link:hover { color: var(--accent); }
+    .app-card { width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <main class="container">
+    <header class="topbar">
+      <div>
+        <a class="back-link" href="../../index.html">← Voltar ao Hub</a>
+        <h1>Relógio & Timer</h1>
+        <p>Escolhe uma ferramenta</p>
+      </div>
+    </header>
+
+    <section class="grid">
+      <a class="app-card" href="relogiomundial.html" style="text-decoration:none;color:inherit;">
+        <span class="emoji">🌍</span>
+        <span class="title">Relógio Mundial</span>
+        <span class="subtitle">Horas em várias cidades</span>
+      </a>
+
+      <a class="app-card" href="cronometro.html" style="text-decoration:none;color:inherit;">
+        <span class="emoji">⏱️</span>
+        <span class="title">Cronómetro</span>
+        <span class="subtitle">Medir tempo e voltas</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
