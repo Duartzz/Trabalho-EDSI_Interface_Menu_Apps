@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <main class="app">
+    <header class="header">
+      <a class="back-link" href="../../index.html">← Voltar ao Hub</a>
+      <h1>Calculadora</h1>
+    </header>
+
+    <section class="calculator" aria-label="Calculadora">
+      <div class="display">
+        <output id="expression" class="expression" aria-live="polite">0</output>
+        <output id="display" class="result" aria-live="polite" aria-atomic="true">0</output>
+      </div>
+
+      <div class="keypad">
+        <button type="button" class="key fn" data-action="clear">AC</button>
+        <button type="button" class="key fn" data-action="backspace" aria-label="Apagar">⌫</button>
+        <button type="button" class="key fn" data-action="unary" data-fn="negate" aria-label="Mais menos">±</button>
+        <button type="button" class="key op" data-action="operator" data-op="/">÷</button>
+
+        <button type="button" class="key adv" data-action="unary" data-fn="pow2" aria-label="Ao quadrado">x²</button>
+        <button type="button" class="key adv" data-action="operator" data-op="^">xʸ</button>
+        <button type="button" class="key adv" data-action="unary" data-fn="sqrt" aria-label="Raiz quadrada">√</button>
+        <button type="button" class="key op" data-action="operator" data-op="*">×</button>
+
+        <button type="button" class="key adv" data-action="unary" data-fn="log" aria-label="Logaritmo base 10">log</button>
+        <button type="button" class="key adv" data-action="unary" data-fn="ln" aria-label="Logaritmo natural">ln</button>
+        <button type="button" class="key adv" data-action="unary" data-fn="round2" aria-label="Duas casas decimais">2dp</button>
+        <button type="button" class="key op" data-action="operator" data-op="-">−</button>
+
+        <button type="button" class="key adv" data-action="unary" data-fn="floor" aria-label="Arredondar para baixo">floor</button>
+        <button type="button" class="key adv" data-action="unary" data-fn="ceil" aria-label="Arredondar para cima">ceil</button>
+        <button type="button" class="key num" data-action="digit" data-digit="7">7</button>
+        <button type="button" class="key op" data-action="operator" data-op="+">+</button>
+
+        <button type="button" class="key num" data-action="digit" data-digit="8">8</button>
+        <button type="button" class="key num" data-action="digit" data-digit="9">9</button>
+        <button type="button" class="key num" data-action="digit" data-digit="4">4</button>
+        <button type="button" class="key eq" data-action="equals">=</button>
+
+        <button type="button" class="key num" data-action="digit" data-digit="5">5</button>
+        <button type="button" class="key num" data-action="digit" data-digit="6">6</button>
+        <button type="button" class="key num" data-action="digit" data-digit="1">1</button>
+
+        <button type="button" class="key num" data-action="digit" data-digit="2">2</button>
+        <button type="button" class="key num" data-action="digit" data-digit="3">3</button>
+        <button type="button" class="key num wide" data-action="digit" data-digit="0">0</button>
+        <button type="button" class="key num" data-action="decimal">,</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

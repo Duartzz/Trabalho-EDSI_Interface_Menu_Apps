@@ -1,0 +1,206 @@
+:root {
+  --bg: #090b17;
+  --panel: #11162a;
+  --panel-2: #171d35;
+  --text: #e9edff;
+  --muted: #a7b0d8;
+  --accent: #6ea8fe;
+  --accent-2: #8a7dff;
+  --danger: #ff6b6b;
+  --success: #5dffc4;
+  --key: #1a2240;
+  --key-hover: #243058;
+  --key-op: #2a3a6e;
+  --key-op-hover: #354880;
+  --key-fn: #3a2850;
+  --key-fn-hover: #4a3468;
+  --key-adv: #1e3048;
+  --key-adv-hover: #2a4060;
+  --key-eq: linear-gradient(135deg, #6ea8fe, #8a7dff);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 15% 10%, #1c2550, transparent 35%),
+    radial-gradient(circle at 90% 20%, #1c2f60, transparent 25%),
+    var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 65% 85%, rgba(110, 168, 254, 0.16), transparent 30%);
+}
+
+.app {
+  width: min(380px, 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  margin-bottom: 18px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.15s ease;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.calculator {
+  background: linear-gradient(155deg, var(--panel), var(--panel-2));
+  border: 1px solid #2b345e;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.display {
+  background: #0a0e1c;
+  border: 1px solid #2b345e;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.expression {
+  width: 100%;
+  text-align: right;
+  font-size: 0.95rem;
+  color: var(--muted);
+  word-break: break-all;
+  line-height: 1.35;
+  min-height: 1.35em;
+}
+
+.result {
+  width: 100%;
+  text-align: right;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.1;
+  word-break: break-all;
+}
+
+.result.error {
+  color: var(--danger);
+  font-size: 2rem;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.key {
+  border: 1px solid #2b345e;
+  border-radius: 12px;
+  padding: 14px 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--key);
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.1s ease;
+  font-family: inherit;
+}
+
+.key:hover {
+  background: var(--key-hover);
+}
+
+.key:active {
+  transform: scale(0.96);
+}
+
+.key.op {
+  background: var(--key-op);
+  color: var(--accent);
+}
+
+.key.op:hover {
+  background: var(--key-op-hover);
+}
+
+.key.fn {
+  background: var(--key-fn);
+  color: #d4b8ff;
+  font-size: 0.92rem;
+}
+
+.key.fn:hover {
+  background: var(--key-fn-hover);
+}
+
+.key.adv {
+  background: var(--key-adv);
+  color: #8ec8ff;
+  font-size: 0.82rem;
+}
+
+.key.adv:hover {
+  background: var(--key-adv-hover);
+}
+
+.key.eq {
+  background: var(--key-eq);
+  color: #0a0e1c;
+  grid-row: span 2;
+}
+
+.key.eq:hover {
+  filter: brightness(1.08);
+}
+
+.key.wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 360px) {
+  .key {
+    padding: 12px 4px;
+    font-size: 0.92rem;
+  }
+
+  .key.adv {
+    font-size: 0.72rem;
+  }
+
+  .result {
+    font-size: 2rem;
+  }
+}
