@@ -33,11 +33,16 @@
         radial-gradient(ellipse 60% 40% at 100% 100%, rgba(91, 159, 212, 0.06), transparent);
       color: var(--text);
       padding: 2rem 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     header {
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 520px;
     }
 
     h1 {
@@ -57,20 +62,53 @@
       font-weight: 500;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.25rem;
-      max-width: 1200px;
-      margin: 0 auto;
+    .controls {
+      width: 100%;
+      max-width: 520px;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    select {
+      width: 100%;
+      appearance: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      padding: 0.85rem 2.5rem 0.85rem 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b9cb3' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.85rem center;
+    }
+
+    select:hover,
+    select:focus {
+      outline: none;
+      border-color: rgba(91, 159, 212, 0.5);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
 
     .clock-card {
+      width: 100%;
+      max-width: 520px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -80,81 +118,68 @@
       position: absolute;
       inset: 0;
       background: var(--accent-glow);
-      opacity: 0;
-      transition: opacity 0.2s ease;
+      opacity: 0.5;
       pointer-events: none;
     }
 
-    .clock-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(91, 159, 212, 0.4);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    .clock-card:hover::before {
-      opacity: 1;
-    }
-
     .clock-card.is-day {
-      border-left: 3px solid var(--day);
+      border-left: 4px solid var(--day);
     }
 
     .clock-card.is-night {
-      border-left: 3px solid var(--night);
-    }
-
-    .city-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
+      border-left: 4px solid var(--night);
     }
 
     .city-name {
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       font-weight: 600;
+      margin-bottom: 0.25rem;
+      position: relative;
     }
 
     .timezone-label {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.05);
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      position: relative;
     }
 
     .time-display {
-      font-size: clamp(2rem, 5vw, 2.5rem);
+      font-size: clamp(3rem, 12vw, 4.5rem);
       font-weight: 300;
       font-variant-numeric: tabular-nums;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 0.35rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      position: relative;
     }
 
     .date-display {
-      font-size: 0.85rem;
+      font-size: 1rem;
       color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      position: relative;
     }
 
-    .offset {
-      font-size: 0.8rem;
+    .meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
+      padding-top: 1.25rem;
       border-top: 1px solid var(--border);
+      position: relative;
     }
 
     .period-badge {
-      display: inline-block;
       font-size: 0.7rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      padding: 0.15rem 0.45rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 4px;
-      margin-left: 0.5rem;
-      vertical-align: middle;
     }
 
     .period-badge.day {
@@ -168,10 +193,10 @@
     }
 
     footer {
-      text-align: center;
       margin-top: 2.5rem;
       font-size: 0.8rem;
       color: var(--text-muted);
+      text-align: center;
     }
   </style>
 </head>
@@ -181,38 +206,123 @@
     <p class="local-time">Your local time: <span id="local-timezone">—</span></p>
   </header>
 
-  <main class="grid" id="clocks"></main>
+  <div class="controls">
+    <label for="timezone-select">Choose timezone</label>
+    <select id="timezone-select" aria-label="Select timezone"></select>
+  </div>
 
-  <footer>Times update every second · Uses your browser's timezone database</footer>
+  <article class="clock-card is-day" id="clock">
+    <div class="city-name" id="city-name">—</div>
+    <div class="timezone-label" id="tz-label">—</div>
+    <div class="time-display" id="time">--:--:--</div>
+    <div class="date-display" id="date">—</div>
+    <div class="meta">
+      <span id="offset">—</span>
+      <span class="period-badge day" id="period">—</span>
+    </div>
+  </article>
+
+  <footer>Updates every second · Uses your browser's timezone database</footer>
 
   <script>
-    const zones = [
-      { city: "Lisbon",        tz: "Europe/Lisbon",          flag: "🇵🇹" },
-      { city: "New York",      tz: "America/New_York",       flag: "🇺🇸" },
-      { city: "Dubai",         tz: "Asia/Dubai",             flag: "🇦🇪" },
-      { city: "Tokyo",         tz: "Asia/Tokyo",             flag: "🇯🇵" },
-    ];
+    const STORAGE_KEY = "world-clock-timezone";
 
+    const cityNames = {
+      "Europe/Lisbon": "Lisbon",
+      "America/New_York": "New York",
+      "Asia/Dubai": "Dubai",
+      "Asia/Tokyo": "Tokyo",
+      "UTC": "UTC",
+      "Europe/London": "London",
+      "Europe/Paris": "Paris",
+      "Europe/Berlin": "Berlin",
+      "Europe/Madrid": "Madrid",
+      "Europe/Rome": "Rome",
+      "Europe/Amsterdam": "Amsterdam",
+      "Europe/Athens": "Athens",
+      "Europe/Moscow": "Moscow",
+      "America/Los_Angeles": "Los Angeles",
+      "America/Chicago": "Chicago",
+      "America/Denver": "Denver",
+      "America/Toronto": "Toronto",
+      "America/Sao_Paulo": "São Paulo",
+      "America/Mexico_City": "Mexico City",
+      "America/Buenos_Aires": "Buenos Aires",
+      "Asia/Kolkata": "Mumbai",
+      "Asia/Shanghai": "Shanghai",
+      "Asia/Hong_Kong": "Hong Kong",
+      "Asia/Singapore": "Singapore",
+      "Asia/Seoul": "Seoul",
+      "Asia/Bangkok": "Bangkok",
+      "Asia/Jerusalem": "Jerusalem",
+      "Australia/Sydney": "Sydney",
+      "Australia/Melbourne": "Melbourne",
+      "Pacific/Auckland": "Auckland",
+      "Africa/Cairo": "Cairo",
+      "Africa/Johannesburg": "Johannesburg",
+      "Africa/Lagos": "Lagos",
+    };
+
+    const select = document.getElementById("timezone-select");
+    const clock = document.getElementById("clock");
     const localTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
     document.getElementById("local-timezone").textContent = localTz;
 
-    const container = document.getElementById("clocks");
+    function getTimezones() {
+      if (typeof Intl.supportedValuesOf === "function") {
+        return Intl.supportedValuesOf("timeZone").sort();
+      }
+      return Object.keys(cityNames).sort();
+    }
 
-    zones.forEach(({ city, tz, flag }) => {
-      const card = document.createElement("article");
-      card.className = "clock-card";
-      card.dataset.tz = tz;
-      card.innerHTML = `
-        <div class="city-row">
-          <span class="city-name">${flag} ${city}</span>
-          <span class="timezone-label">${tz.replace(/_/g, " ")}</span>
-        </div>
-        <div class="time-display" data-time>--:--:--</div>
-        <div class="date-display" data-date>—</div>
-        <div class="offset" data-offset>—</div>
-      `;
-      container.appendChild(card);
-    });
+    function displayName(tz) {
+      if (cityNames[tz]) return `${cityNames[tz]} (${tz.replace(/_/g, " ")})`;
+      return tz.replace(/_/g, " ");
+    }
+
+    function cityFromTz(tz) {
+      if (cityNames[tz]) return cityNames[tz];
+      const part = tz.split("/").pop().replace(/_/g, " ");
+      return part;
+    }
+
+    function populateSelect() {
+      const timezones = getTimezones();
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const defaultTz = saved && timezones.includes(saved) ? saved : "Europe/Lisbon";
+
+      const favorites = [
+        "Europe/Lisbon",
+        "America/New_York",
+        "Asia/Dubai",
+        "Asia/Tokyo",
+        localTz,
+      ].filter((tz, i, arr) => timezones.includes(tz) && arr.indexOf(tz) === i);
+
+      const favGroup = document.createElement("optgroup");
+      favGroup.label = "Favorites";
+      favorites.forEach(tz => {
+        const opt = document.createElement("option");
+        opt.value = tz;
+        opt.textContent = displayName(tz) + (tz === localTz ? " · your local" : "");
+        favGroup.appendChild(opt);
+      });
+      select.appendChild(favGroup);
+
+      const allGroup = document.createElement("optgroup");
+      allGroup.label = "All timezones";
+      timezones.forEach(tz => {
+        if (favorites.includes(tz)) return;
+        const opt = document.createElement("option");
+        opt.value = tz;
+        opt.textContent = displayName(tz);
+        allGroup.appendChild(opt);
+      });
+      select.appendChild(allGroup);
+
+      select.value = defaultTz;
+    }
 
     function getHourInZone(tz) {
       const parts = new Intl.DateTimeFormat("en-US", {
@@ -235,45 +345,50 @@
       return `UTC${sign}${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
     }
 
-    function updateClocks() {
+    function updateClock() {
+      const tz = select.value;
       const now = new Date();
+      const hour = getHourInZone(tz);
+      const isDay = hour >= 6 && hour < 20;
 
-      document.querySelectorAll(".clock-card").forEach(card => {
-        const tz = card.dataset.tz;
-        const hour = getHourInZone(tz);
-        const isDay = hour >= 6 && hour < 20;
+      clock.classList.toggle("is-day", isDay);
+      clock.classList.toggle("is-night", !isDay);
 
-        card.classList.toggle("is-day", isDay);
-        card.classList.toggle("is-night", !isDay);
+      document.getElementById("city-name").textContent = cityFromTz(tz);
+      document.getElementById("tz-label").textContent = tz.replace(/_/g, " ");
 
-        const timeEl = card.querySelector("[data-time]");
-        const dateEl = card.querySelector("[data-date]");
-        const offsetEl = card.querySelector("[data-offset]");
+      document.getElementById("time").textContent = new Intl.DateTimeFormat("en-US", {
+        timeZone: tz,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      }).format(now);
 
-        timeEl.textContent = new Intl.DateTimeFormat("en-US", {
-          timeZone: tz,
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
-        }).format(now);
+      document.getElementById("date").textContent = new Intl.DateTimeFormat("en-US", {
+        timeZone: tz,
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      }).format(now);
 
-        dateEl.textContent = new Intl.DateTimeFormat("en-US", {
-          timeZone: tz,
-          weekday: "long",
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        }).format(now);
+      document.getElementById("offset").textContent = formatOffset(tz);
 
-        const period = isDay ? "Day" : "Night";
-        const badgeClass = isDay ? "day" : "night";
-        offsetEl.innerHTML = `${formatOffset(tz)} · <span class="period-badge ${badgeClass}">${period}</span>`;
-      });
+      const periodEl = document.getElementById("period");
+      periodEl.textContent = isDay ? "Day" : "Night";
+      periodEl.className = `period-badge ${isDay ? "day" : "night"}`;
     }
 
-    updateClocks();
-    setInterval(updateClocks, 1000);
+    populateSelect();
+    updateClock();
+
+    select.addEventListener("change", () => {
+      localStorage.setItem(STORAGE_KEY, select.value);
+      updateClock();
+    });
+
+    setInterval(updateClock, 1000);
   </script>
 </body>
 </html>
