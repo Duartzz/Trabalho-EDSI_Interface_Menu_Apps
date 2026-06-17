@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MeuPhone AI Buddy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="phone-frame">
+    <header class="chat-header">
+      <a class="back-btn" href="../../index.html" aria-label="Voltar ao hub">←</a>
+      <div class="header-info">
+        <span class="avatar" aria-hidden="true">🤖</span>
+        <div>
+          <h1>AI Buddy</h1>
+          <p class="status-text" id="connectionStatus">MeuPhone AI Buddy</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <label class="tone-select" title="Tom do assistente">
+          <span class="sr-only">Tom</span>
+          <select id="toneSelect" aria-label="Tom do assistente">
+            <option value="casual">Casual</option>
+            <option value="formal">Formal</option>
+            <option value="technical">Técnico</option>
+          </select>
+        </label>
+        <button type="button" class="icon-btn" id="clearBtn" title="Limpar conversa" aria-label="Limpar conversa">🗑️</button>
+      </div>
+    </header>
+
+    <main class="chat-area" id="chatArea" aria-live="polite">
+      <div class="welcome-card" id="welcomeCard">
+        <p>Olá! Sou o <strong>MeuPhone AI Buddy</strong>.</p>
+        <p>Posso ajudar com as apps do telemóvel, explicar cálculos, sugerir jogadas no Galo e muito mais.</p>
+        <div class="quick-prompts">
+          <button type="button" class="quick-btn" data-prompt="Que apps tens disponíveis?">📱 Apps disponíveis</button>
+          <button type="button" class="quick-btn" data-prompt="Porque é que 15% de 200 é 30?">🧮 Explicar percentagem</button>
+          <button type="button" class="quick-btn" data-prompt="Qual é a melhor jogada no jogo do galo?">❌⭕ Estratégia Galo</button>
+        </div>
+      </div>
+    </main>
+
+    <div class="typing-indicator hidden" id="typingIndicator" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <p>a escrever...</p>
+    </div>
+
+    <footer class="chat-input-bar">
+      <form id="chatForm" class="input-form">
+        <textarea
+          id="messageInput"
+          rows="1"
+          placeholder="Escreve a tua mensagem..."
+          aria-label="Mensagem"
+          autocomplete="off"
+        ></textarea>
+        <button type="submit" id="sendBtn" aria-label="Enviar">➤</button>
+      </form>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
