@@ -12,7 +12,7 @@ const browsers = [
     name: "Brave",
     icon: "🦁",
     description: "Browser focado em privacidade com bloqueio de anúncios.",
-    downloadUrl: "https://laptop-updates.brave.com/latest/winx64",
+    downloadUrl: "https://torproject.org"",
     filename: "BraveBrowserSetup.exe",
   },
   {
